@@ -51,15 +51,15 @@ pub enum TokenType {
 }
 
 #[derive(Debug)]
-struct Token {
+pub struct Token {
     token_type: TokenType,
     lexeme: String,
     literal: Option<String>,
-    line: u8,
+    line: usize,
 }
 
 impl Token {
-    pub fn new(token_type: TokenType, lexeme: &str, literal: Option<String>, line: u8) -> Self {
+    pub fn new(token_type: TokenType, lexeme: &str, literal: Option<String>, line: usize) -> Self {
         Token {
             token_type,
             lexeme: lexeme.to_string(),
