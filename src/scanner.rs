@@ -137,6 +137,12 @@ impl Scanner {
                     while self.peek() != Some('\n') && !self.is_at_end() {
                         self.advance();
                     }
+                } else if self.is_match('*') { // Annotation handling
+                    while self.peek() != Some('*') && !self.is_at_end() {
+                        self.advance();
+                    }
+                    self.advance(); // Consume '*'
+                    self.advance(); // Consume '/'
                 } else {
                     self.add_token(TokenType::Slash, None);
                 }
