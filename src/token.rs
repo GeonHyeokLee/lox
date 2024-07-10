@@ -1,6 +1,6 @@
 use core::fmt;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum TokenType {
     // Single-character tokens.
     LeftParen,
@@ -50,7 +50,7 @@ pub enum TokenType {
     Eof
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Token {
     token_type: TokenType,
     lexeme: String,
@@ -64,13 +64,13 @@ impl Token {
             token_type,
             lexeme: lexeme.to_string(),
             literal,
-            line
+            line,
         }
     }
 }
 
 impl fmt::Display for Token {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{:?} {} {:?}", self.token_type, self.lexeme, self.literal)
+        write!(f, "type: {:?}, lexeme: {}, literal: {:?}, line: {}", self.token_type, self.lexeme, self.literal, self.line)
     }
 }
