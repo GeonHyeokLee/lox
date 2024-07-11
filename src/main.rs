@@ -1,5 +1,7 @@
 use std::{env, fs, io::{self, BufRead, Write}, path::Path, process, str};
 
+use scanner::Scanner;
+
 mod token;
 mod scanner;
 
@@ -49,9 +51,16 @@ fn run_prompt() {
 }
 
 fn run(source: &str) {
-    println!("source: {}", source);
-    // TODO: Create Scanner
-    // TODO: Create Tokens
+    let mut scanner = Scanner::new(source);
+    let tokens = scanner.scan_tokens();
 
-    // TODO: Print Tokens
+    println!("------------------------------------------------------------");
+
+    for token in tokens {
+        let token = token.clone();
+        println!("{}", token);
+    }
+
+    println!("------------------------------------------------------------");
+
 }
